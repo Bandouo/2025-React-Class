@@ -24,21 +24,26 @@ function App() {
     setTodos(newTodos);
   };
 
+  const deleteTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="app-container">
-      <h1 className="title">ToDo list</h1>
+      <h1 className="title">ToDo</h1>
       <div className="input-area">
         <input
           type="text"
           value={task}
-          placeholder="ADD TASK"
+          placeholder="Enter ToDo"
           onChange={(e) => setTask(e.target.value)}
         />
-        <button onClick={addTodo}>ADD</button>
+        <button onClick={addTodo}>add</button>
       </div>
       <ul className="todo-list">
         {todos.map((todo, index) => (
-          <li key={index} className={todo.checked ? 'checked' : ''}>
+          <li key={index} className="todo-item">
             <label>
               <input
                 type="checkbox"
@@ -47,6 +52,7 @@ function App() {
               />
               {todo.text}
             </label>
+            <button className="delete-btn" onClick={() => deleteTodo(index)}>×</button>
           </li>
         ))}
       </ul>
